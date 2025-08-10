@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Calculator</title>
+<style>
+body{font-family:Arial;background:#f4f4f4;display:flex;align-items:center;justify-content:center;height:100vh;margin:0}
+.calc{background:#fff;padding:18px;border-radius:8px;box-shadow:0 4px 10px rgba(0,0,0,0.08);width:300px}
+.calc h2{margin:0 0 12px;font-size:18px;text-align:center;color:#333}
+.row{display:flex;gap:8px;margin-bottom:10px}
+input[type="number"]{flex:1;padding:10px;border:1px solid #ddd;border-radius:6px;font-size:14px}
+button{flex:1;padding:10px;border:0;border-radius:6px;background:#007bff;color:#fff;font-size:15px;cursor:pointer}
+button.op{background:#28a745}
+button.clear{background:#dc3545}
+.result{margin-top:10px;padding:10px;border-radius:6px;background:#f8f9fa;border:1px solid #e9ecef;text-align:center;font-weight:600}
+</style>
+</head>
+<body>
+<div class="calc">
+<h2>Calculator</h2>
+<div class="row">
+<input id="a" type="number" placeholder="First">
+<input id="b" type="number" placeholder="Second">
+</div>
+<div class="row">
+<button id="add">+</button>
+<button id="sub" class="op">-</button>
+</div>
+<div class="row">
+<button id="mul" class="op">*</button>
+<button id="div" class="op">/</button>
+</div>
+<div class="row">
+<button id="clear" class="clear">Clear</button>
+</div>
+<div id="result" class="result">Result here</div>
+</div>
+<script>
+const a=document.getElementById('a')
+const b=document.getElementById('b')
+const res=document.getElementById('result')
+function nums(){const n1=parseFloat(a.value),n2=parseFloat(b.value);return[isNaN(n1)?0:n1,isNaN(n2)?0:n2]}
+document.getElementById('add').onclick=()=>{const[x,y]=nums();res.textContent=`Answer: ${x+y}`}
+document.getElementById('sub').onclick=()=>{const[x,y]=nums();res.textContent=`Answer: ${x-y}`}
+document.getElementById('mul').onclick=()=>{const[x,y]=nums();res.textContent=`Answer: ${x*y}`}
+document.getElementById('div').onclick=()=>{const[x,y]=nums();res.textContent=y===0?'Error':`Answer: ${x/y}`}
+document.getElementById('clear').onclick=()=>{a.value='';b.value='';res.textContent='Result here'}
+</script>
+</body>
+</html>
